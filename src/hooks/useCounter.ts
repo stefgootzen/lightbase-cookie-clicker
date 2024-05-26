@@ -1,6 +1,14 @@
 import { useRef, useState } from "react";
 
-export function useCounter(initialCount = 0) {
+interface UseCounterReturn {
+  count: number;
+  isAutomated: boolean;
+  incrementByOne: () => void;
+  toggleAutomate: () => void;
+  reset: () => void;
+}
+
+export function useCounter(initialCount = 0): UseCounterReturn {
   const [count, setCount] = useState(initialCount);
   const [isAutomated, setIsAutomated] = useState(false);
 
