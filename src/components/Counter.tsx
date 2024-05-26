@@ -8,36 +8,29 @@ export default function Counter({ initialCount = 0 }: CounterProps) {
   const { count, incrementByOne, isAutomated, toggleAutomate, reset } = useCounter(initialCount);
 
   return (
-    <>
+    <div className={"flex flex-col gap-16 text-center"}>
       <div>
-        <p className="heading text-6xl font-medium text-center">{count}</p>
-        <p className="text-xl text-gray-500 font-medium text-center">Cookies</p>
+        <p className="heading text-6xl font-medium ">{count}</p>
+        <p className="text-xl text-gray-500 font-medium ">Cookies</p>
       </div>
 
-      <div className="h-16" />
+      <img
+        className={"self-center"}
+        onClick={incrementByOne}
+        height={200}
+        width={200}
+        src="/cookie.svg"
+        alt="Add cookie"
+      />
 
-      <div className="flex items-center justify-center">
-        <div onClick={incrementByOne}>
-          <img height={200} width={200} src="/cookie.svg" alt="Add cookie" />
-        </div>
-      </div>
-
-      <div className="h-16" />
-
-      <div className="flex flex-col sm:flex-row gap-3 text-center">
-        <div
-          onClick={toggleAutomate}
-          className="shadow-md bg-blue-500 py-4 px-6 rounded-lg text-blue-100 font-bold hover:bg-blue-600 hover:underline focus:ring-2 ring-offset-2 ring-blue-600 focus:outline-none"
-        >
+      <div className="flex flex-col sm:flex-row gap-3">
+        <div onClick={toggleAutomate} className={"btn bg-blue-500 text-blue-100 hover:bg-blue-600"}>
           Turn automate {isAutomated ? "off" : "on"}
         </div>
-        <div
-          onClick={reset}
-          className="border shadow-md bg-white py-4 px-6 rounded-lg text-gray-700 font-bold hover:bg-gray-100 hover:underline focus:ring-2 ring-offset-2 ring-blue-600 focus:outline-none"
-        >
+        <div onClick={reset} className="btn bg-white text-gray-700 hover:bg-gray-100 hover:underline">
           Reset
         </div>
       </div>
-    </>
+    </div>
   );
 }
