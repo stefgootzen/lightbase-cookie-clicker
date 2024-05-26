@@ -24,14 +24,13 @@ export default function Counter({ initialCount = 0 }: CounterProps) {
 
       <div className="h-16" />
 
-      <div className="flex items-center justify-center">
+      <div className="flex flex-col sm:flex-row gap-3 text-center">
         <div
           onClick={toggleAutomate}
           className="shadow-md bg-blue-500 py-4 px-6 rounded-lg text-blue-100 font-bold hover:bg-blue-600 hover:underline focus:ring-2 ring-offset-2 ring-blue-600 focus:outline-none"
         >
           Turn automate {isAutomated ? "off" : "on"}
         </div>
-        <div className="w-3" />
         <div
           onClick={reset}
           className="border shadow-md bg-white py-4 px-6 rounded-lg text-gray-700 font-bold hover:bg-gray-100 hover:underline focus:ring-2 ring-offset-2 ring-blue-600 focus:outline-none"
