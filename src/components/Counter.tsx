@@ -1,12 +1,8 @@
-import { useState } from "react";
-
 type CounterProps = {
-  value: number;
+  count: number;
 };
 
-export default function Counter({ value }: CounterProps) {
-  const [count] = useState(value);
-
+export default function Counter({ count }: CounterProps) {
   return (
     <div>
       <p className="heading text-6xl font-medium text-center">{count}</p>

@@ -44,7 +44,7 @@ export default function Home() {
         <div className="h-4" />
 
         <main id="main">
-          <Counter value={count} />
+          <Counter count={count} />
 
           <div className="h-16" />
 
@@ -52,7 +52,6 @@ export default function Home() {
             <div
               onClick={(e) => {
                 e.preventDefault();
-
                 setCount(count + 1);
               }}
             >
