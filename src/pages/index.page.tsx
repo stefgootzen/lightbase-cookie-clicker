@@ -52,7 +52,7 @@ export default function Home() {
             <div
               onClick={(e) => {
                 e.preventDefault();
-                setCount(count + 1);
+                setCount(prevCount => prevCount + 1);
               }}
             >
               <img
