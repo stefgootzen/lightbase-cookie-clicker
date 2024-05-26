@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useCounter } from "../hooks/useCounter";
 import Counter from "components/Counter";
 
 /**
@@ -7,34 +8,7 @@ import Counter from "components/Counter";
  * You're allowed to use online resources.
  */
 export default function Home() {
-  const [count, setCount] = useState(0);
-  const [isAutomated, setIsAutomated] = useState(false);
-
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const handleAutomateOn = () => {
-    setIsAutomated(true);
-
-    intervalRef.current = setInterval(() => {
-      setCount(prevCount => prevCount + 1);
-    }, 1000);
-  };
-
-  const handleAutomateOff = () => {
-    if (!intervalRef.current) {
-      return;
-    }
-    clearInterval(intervalRef.current);
-    setIsAutomated(false);
-  };
-
-  const toggleAutomate = () => {
-    isAutomated ? handleAutomateOff() : handleAutomateOn();
-  };
-
-  const reset = () => {
-    setCount(0);
-  };
+  const { count, incrementByOne, isAutomated, toggleAutomate, reset } = useCounter(0);
 
   return (
     <>
@@ -57,12 +31,7 @@ export default function Home() {
           <div className="h-16" />
 
           <div className="flex items-center justify-center">
-            <div
-              onClick={e => {
-                e.preventDefault();
-                setCount(prevCount => prevCount + 1);
-              }}
-            >
+            <div onClick={incrementByOne}>
               <img height={200} width={200} src="/cookie.svg" alt="Add cookie" />
             </div>
           </div>
