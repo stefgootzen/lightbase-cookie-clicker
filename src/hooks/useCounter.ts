@@ -10,29 +10,26 @@ interface UseCounterReturn {
 
 export function useCounter(initialCount = 0): UseCounterReturn {
   const [count, setCount] = useState(initialCount);
-  const [isAutomated, setIsAutomated] = useState(false);
-
-  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const [intervalId, setIntervalId] = useState<ReturnType<typeof setInterval> | null>(null);
 
   const handleAutomateOn = () => {
-    setIsAutomated(true);
-
-    intervalRef.current = setInterval(() => {
+    const ref = setInterval(() => {
       incrementByOne();
     }, 1000);
+
+    setIntervalId(ref);
   };
 
   const handleAutomateOff = () => {
-    setIsAutomated(false);
-
-    if (!intervalRef.current) {
+    if (!intervalId) {
       return;
     }
-    clearInterval(intervalRef.current);
+    clearInterval(intervalId);
+    setIntervalId(null);
   };
 
   const toggleAutomate = () => {
-    isAutomated ? handleAutomateOff() : handleAutomateOn();
+    intervalId ? handleAutomateOff() : handleAutomateOn();
   };
 
   const reset = () => {
@@ -45,7 +42,7 @@ export function useCounter(initialCount = 0): UseCounterReturn {
 
   return {
     count,
-    isAutomated,
+    isAutomated: !!intervalId,
     incrementByOne,
     toggleAutomate,
     reset,
